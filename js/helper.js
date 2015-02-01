@@ -20,6 +20,7 @@ function logClicks(x,y) {
     }
   );
   console.log('x location: ' + x + '; y location: ' + y);
+  objectAt(x,y);
 }
 
 $(document).click(function(loc) {  
@@ -46,11 +47,14 @@ function checkCollisions(){
 
 function objectAt(x, y)
 {
+	console.log("attempting to find object");
 	for(enemy in allEnemies)
 	{
-		if(enemy.x === playerX && enemy.y === playerY){
-			console.log("collision!!!!");
+		var boundX = enemy.x + enemy.width;
+		var boundY = enemy.y + enemy.height;
+		
+		if((x >= enemy.x && x <= boundX) && ( y >= enemy.y && y <= boundY)){
+			console.log("object found!!");
 		}
 	}
-	return obj;
 }
