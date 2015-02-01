@@ -32,7 +32,6 @@ Enemy.prototype.render = function() {
 var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
-    this.speed = speed;
     this.sprite = "images/char-boy.png";
 }
 
@@ -45,6 +44,40 @@ Player.prototype.render = function()
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+Player.prototype.handleInput = function ( key ){
+    
+    // console.log(this.x);
+    console.log(this.y);
+
+    // if right was pressed + check bound
+    if(key === "right" && this.x < 400){
+       this.x += 100;
+    }
+    // if left was pressed + check bound
+    else if(key === "left" && this.x > 0){
+        this.x -= 100;
+    }
+    // if up was pressed + check bound
+    else if(key === "up" && this.y > 0){
+        
+        // check if attempting to move to top of screen
+        if(this.y === 60){
+            
+            // if so, reset player position
+            this.x = 200;
+            this.y = 400;
+        }
+        else {
+            // if not, move player up
+            this.y -= 85;
+        }
+    }
+    // if down was pressed + check bounds
+    else if(key === "down" && this.y < 400){
+        this.y += 85;
+    }
+}
+
 // canvas is 505 x 606
 
 // Now instantiate your objects.
@@ -53,8 +86,8 @@ Player.prototype.render = function()
 var allEnemies = [];
 var player;
 
-function spawnPlayer(x,y,speed){
-    player = new Player( 200, 200, 50);
+function spawnPlayer(){
+    player = new Player( 200, 400);
 }
 
 // function that spawns an enemy
