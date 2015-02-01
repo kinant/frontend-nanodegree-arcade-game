@@ -6,7 +6,8 @@ var Enemy = function( x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-
+    this.width = 101;
+    this.height = 171;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -18,12 +19,24 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    if(this.x > 400){
+        console.log("removing!!");
+        this.remove();
+    }
+
     this.x = this.x + this.speed * dt;
 }
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+Enemy.prototype.remove = function ()
+{
+    ctx.clearRect(this.x, this.y, this.width, this.height);
+    allEnemies.pop(this);
 }
 
 // Now write your own player class
@@ -33,6 +46,8 @@ var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.sprite = "images/char-boy.png";
+    this.width = 101;
+    this.height = 171;
 }
 
 Player.prototype.update = function( dt )
@@ -46,9 +61,6 @@ Player.prototype.render = function()
 
 Player.prototype.handleInput = function ( key ){
     
-    // console.log(this.x);
-    console.log(this.y);
-
     // if right was pressed + check bound
     if(key === "right" && this.x < 400){
        this.x += 100;
@@ -105,6 +117,7 @@ function spawnEnemy(){
     lastEnemyStart = newStart;
 
     allEnemies.push(enemy);
+
 };
 
 // This listens for key presses and sends the keys to your
