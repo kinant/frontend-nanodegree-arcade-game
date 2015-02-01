@@ -9,8 +9,6 @@ var enemyStartLocations = [base, base + add, base + add*2, base + add*3, base + 
 
 clickLocations = [];
 
-var counter = 100;
-
 // log clic locations for easy determination of coordinates
 // from resume project
 
@@ -31,4 +29,28 @@ $(document).click(function(loc) {
 // returns a random number from 0 to toNum
 function randomNum( toNum ){
     return Math.floor((Math.random() * toNum) + 1)
+}
+
+function checkCollisions(){
+	
+	var playerX = player.x;
+	var playerY = player.y;
+
+	for(enemy in allEnemies)
+	{
+		if(enemy.x === playerX && enemy.y === playerY){
+			console.log("collision!!!!");
+		}
+	}
+}
+
+function objectAt(x, y)
+{
+	for(enemy in allEnemies)
+	{
+		if(enemy.x === playerX && enemy.y === playerY){
+			console.log("collision!!!!");
+		}
+	}
+	return obj;
 }

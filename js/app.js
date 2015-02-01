@@ -90,10 +90,20 @@ function spawnPlayer(){
     player = new Player( 200, 400);
 }
 
+var lastEnemyStart = 0;
 // function that spawns an enemy
 function spawnEnemy(){
 
-    var enemy = new Enemy(0, enemyStartLocations[randomNum(5)], randomNum(100));
+    var newStart = randomNum(4);
+    
+    while(newStart === lastEnemyStart){
+        newStart = randomNum(4);
+    }
+
+    var enemy = new Enemy(0, enemyStartLocations[newStart], randomNum(100));
+    
+    lastEnemyStart = newStart;
+
     allEnemies.push(enemy);
 };
 
