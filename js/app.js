@@ -55,15 +55,11 @@ var player = new Player( 200, 200, 50);
 
 var allEnemies = [];
 
-for (i = 0; i < 10; i++ ) {
-    setTimeout(function (){
+function spawnEnemy(){
 
-        var enemy = new Enemy(0, Math.floor((Math.random() * 600) + 1), 20);
-        allEnemies.push(enemy);
-
-    }, i * 5000);
+    var enemy = new Enemy(0, enemyStartLocations[randomNum(5)], randomNum(100));
+    allEnemies.push(enemy);
 };
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

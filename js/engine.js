@@ -23,6 +23,7 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
+        timer,
         lastTime;
 
     canvas.width = 505;
@@ -48,6 +49,14 @@ var Engine = (function(global) {
         update(dt);
         render();
 
+        counter--;
+
+        console.log(counter);
+
+        if(counter < 0){
+            spawnEnemy();
+            counter = randomNum(1000 / timer.getElapsedTime());
+        }
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -66,6 +75,8 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
+        timer = new Timer();
+        timer.reset();
         main();
     }
 
@@ -80,6 +91,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
+        // console.log(timer.getElapsedTime());
         // checkCollisions();
     }
 
