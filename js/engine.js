@@ -23,8 +23,15 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        timer,
         lastTime;
+
+    // variable for the timer
+    var timer;
+
+    /* variable of a counter. Whenever it reaches 0, a new enemy spawns
+     * and the counter is reset so that the next enemy can spawn.
+     */
+    var counter;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -49,13 +56,22 @@ var Engine = (function(global) {
         update(dt);
         render();
 
+        // decrement the counter
         counter--;
 
-        console.log(counter);
-
+        // console.log(counter);
+        // console.log(timer.getElapsedTime());
+        
+        // once the counter reaches 0 or less, spawn a new enemy
         if(counter < 0){
+            
             spawnEnemy();
-            counter = randomNum(1000 / timer.getElapsedTime());
+
+            /* Reset the counter based on a function of the time elapsed.
+             * Basically, the longer the time that has elapsed, the quicker
+             * the enemies will spawn. 
+             */
+            counter = randomNum(1000);
         }
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -75,8 +91,16 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
+        
+        // initialize counter
+        counter = 100;
+
+        // initialize timer
         timer = new Timer();
         timer.reset();
+        
+        // spawn the player
+        spawnPlayer();
         main();
     }
 
@@ -91,7 +115,6 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // console.log(timer.getElapsedTime());
         // checkCollisions();
     }
 
