@@ -36,7 +36,7 @@ Enemy.prototype.render = function() {
 Enemy.prototype.remove = function ()
 {
     ctx.clearRect(this.x, this.y, this.width, this.height);
-    allEnemies.pop(this);
+    allEnemies.remove(this);
 }
 
 // Now write your own player class
