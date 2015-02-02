@@ -40,6 +40,8 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    var playerSelectSprite;
+
     function selectScreen() { 
         
         var sprites = ["char-boy", "char-pink-girl", "char-horn-girl", "char-cat-girl", "char-princess-girl"];
@@ -47,7 +49,7 @@ var Engine = (function(global) {
 
         var img = new Image();
         
-        handleInput = function ( key ){
+        handleSelectInput = function ( key ){
             
             if(key === "left" || key === "right"){
                 // if right was pressed
@@ -71,23 +73,24 @@ var Engine = (function(global) {
                 ctx.drawImage(img, 200, 400);
             }
             else if(key === "space"){
+                playerSelectSprite = sprites[counter];
+                console.log("sprite chosen..." + playerSelectSprite);
                 ctx.clearRect(0,0,505,606);
+                document.removeEventListener('keyup', handleSelectInput);
+                spawnPlayer();
                 main();
             }
-        }
+        };
 
         document.addEventListener('keyup', function(e) {
-            console.log("key.." + e.keyCode);
 
             var allowedKeys = {
                 32: 'space',
                 37: 'left',
-                38: 'up',
-                39: 'right',
-                40: 'down'
+                39: 'right'
             };
 
-            handleInput(allowedKeys[e.keyCode]);
+            handleSelectInput(allowedKeys[e.keyCode]);
         });
 
         ctx.fillRect(0,0,505,606);
@@ -161,9 +164,6 @@ var Engine = (function(global) {
         timer.reset();
         
         selectScreen();
-        // spawn the player
-        spawnPlayer();
-        // main();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -248,7 +248,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
+        console.log("in render!");
         player.render();
     }
 
