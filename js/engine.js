@@ -25,6 +25,9 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
+    // set attribute id of canvas (for Kineticjs)
+    canvas.setAttribute("id", "myCanvas")
+    
     // variable for the timer
     var timer;
 
@@ -37,6 +40,63 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    function selectScreen() { 
+        
+        var sprites = ["char-boy", "char-pink-girl", "char-horn-girl", "char-cat-girl", "char-princess-girl"];
+        var counter = 0;
+
+        var img = new Image();
+        
+        handleInput = function ( key ){
+            
+            if(key === "left" || key === "right"){
+                // if right was pressed
+                if(key === "right"){
+                   counter++;
+
+                   if(counter === sprites.length){
+                        counter = 0;
+                   }
+                }
+                else if(key === "left") {
+                    counter--;
+
+                    if(counter === -1){
+                        counter = sprites.length - 1;
+                    }
+                }
+
+                ctx.clearRect(200,400,101,171);
+                img.src = "images/" + sprites[counter] + ".png";
+                ctx.drawImage(img, 200, 400);
+            }
+            else if(key === "space"){
+                ctx.clearRect(0,0,505,606);
+                main();
+            }
+        }
+
+        document.addEventListener('keyup', function(e) {
+            console.log("key.." + e.keyCode);
+
+            var allowedKeys = {
+                32: 'space',
+                37: 'left',
+                38: 'up',
+                39: 'right',
+                40: 'down'
+            };
+
+            handleInput(allowedKeys[e.keyCode]);
+        });
+
+        ctx.fillRect(0,0,505,606);
+        
+        img.onload = function(){
+            ctx.drawImage(img, 200, 400);
+        };
+        img.src = "images/" + sprites[counter] + ".png";
+    };
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -100,9 +160,10 @@ var Engine = (function(global) {
         timer = new Timer();
         timer.reset();
         
+        selectScreen();
         // spawn the player
         spawnPlayer();
-        main();
+        // main();
     }
 
     /* This function is called by main (our game loop) and itself calls all

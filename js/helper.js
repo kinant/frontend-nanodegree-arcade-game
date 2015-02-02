@@ -80,3 +80,11 @@ function collides(player, enemy) {
 			 r2.top > r1.bottom ||
 			 r2.bottom < r1.top)
 }
+
+//
+function selectScreen() {
+	ctx.fillRect(0,0,505,606);
+
+	setTimeout(function(){ console.log(Engine); }, 3000);
+
+}
