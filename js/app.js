@@ -42,10 +42,11 @@ Enemy.prototype.remove = function ()
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(x, y, speed) {
+var Player = function(x, y, sprite) {
     this.x = x;
     this.y = y;
     this.sprite = "images/char-boy.png";
+    console.log("sprite..." + this.sprite);
     this.width = 101;
     this.height = 171;
 }
@@ -101,8 +102,8 @@ Player.prototype.handleInput = function ( key ){
 var allEnemies = [];
 var player;
 
-function spawnPlayer(){
-    player = new Player( 200, 400);
+function spawnPlayer( sprite ){
+    player = new Player( 200, 400, sprite);
 }
 
 var lastEnemyStart = 0;
