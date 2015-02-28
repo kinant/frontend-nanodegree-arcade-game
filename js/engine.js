@@ -25,9 +25,6 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    // variable for the timer
-    var timer;
-
     /* variable of a counter. Whenever it reaches 0, a new enemy spawns
      * and the counter is reset so that the next enemy can spawn.
      */
@@ -60,7 +57,7 @@ var Engine = (function(global) {
         counter--;
 
         // console.log(counter);
-        console.log(timer.getElapsedTime());
+        // console.log(timer.getElapsedTime());
         
         // once the counter reaches 0 or less, spawn a new enemy
         if(counter == 0){
@@ -103,6 +100,7 @@ var Engine = (function(global) {
         // show score
         ctx.font="20px Georgia";
         ctx.fillText("Score: " + score + "", 0, 40);
+        ctx.fillText("Time: " + timer.getElapsedTime() + "", 300, 40);
 
         // spawn the player
         spawnPlayer();
@@ -142,6 +140,7 @@ var Engine = (function(global) {
         ctx.clearRect(0, 0, 606, 45);
         // ctx.font="20px Georgia";
         ctx.fillText("Score: " + score + "", 0, 40);
+        ctx.fillText("Time: " + Math.floor(timer.getElapsedTime()) + "", 400, 40);
     }
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every

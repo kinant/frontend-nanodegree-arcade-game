@@ -10,6 +10,7 @@ var enemyStartLocations = [base, base + add, base + add*2, base + add*3, base + 
 
 // variable for score
 var score = 0;
+var timer;
 
 // returns a random number from 0 to toNum
 // http://stackoverflow.com/questions/12885110/javascript-math-random
@@ -26,6 +27,7 @@ function checkCollisions(){
 			console.log("collision detected!");
 			enemy.remove();
 			score = 0;
+			timer.reset();
 			player.x = 200;
 			player.y = 400;
 		}
