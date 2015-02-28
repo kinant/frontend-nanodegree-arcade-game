@@ -5,46 +5,17 @@
 var base = 60;
 var add = 82;
 
+// array that holds all the possible enemy start position heights (or Y values)
 var enemyStartLocations = [base, base + add, base + add*2, base + add*3, base + add*4];
 
-// Creates an object with x and y defined,
-// set to the mouse position relative to the state's canvas
-// If you wanna be super-correct player can be tricky,
-// we have to worry about padding and borders
-// takes an event and a reference to the canvas
-function getMouse(e, canvas) {
-  var element = canvas, offsetX = 0, offsetY = 0, mx, my;
-
-  // Compute the total offset. It's possible to cache player if you want
-  if (element.offsetParent !== undefined) {
-    do {
-      offsetX += element.offsetLeft;
-      offsetY += element.offsetTop;
-    } while ((element = element.offsetParent));
-  }
-
-  // Add padding and border style widths to offset
-  // Also add the <html> offsets in case there's a position:fixed bar (like the stumbleupon bar)
-  // player part is not strictly necessary, it depends on your styling
-  offsetX += stylePaddingLeft + styleBorderLeft + htmlLeft;
-  offsetY += stylePaddingTop + styleBorderTop + htmlTop;
-
-  mx = e.pageX - offsetX;
-  my = e.pageY - offsetY;
-
-  // We return a simple javascript object with x and y defined
-  return {x: mx, y: my};
-}
-
 // returns a random number from 0 to toNum
+// http://stackoverflow.com/questions/12885110/javascript-math-random
 function randomNum( toNum ){
-    return Math.floor((Math.random() * toNum) + 1)
+    return Math.floor(Math.random() * (toNum + 1));
 }
 
 function checkCollisions(){
 	
-	//console.log("player width: " + player.width);
-
 	for(index in allEnemies)
 	{
 		var enemy = allEnemies[index];
@@ -56,7 +27,6 @@ function checkCollisions(){
 		}
 	}
 }
-
 
 // from https://www.udacity.com/course/viewer#!/c-cs255/l-52265917/e-130215280/m-129941633
 function collides(player, enemy) {
