@@ -8,6 +8,9 @@ var add = 82;
 // array that holds all the possible enemy start position heights (or Y values)
 var enemyStartLocations = [base, base + add, base + add*2, base + add*3, base + add*4];
 
+// variable for score
+var score = 0;
+
 // returns a random number from 0 to toNum
 // http://stackoverflow.com/questions/12885110/javascript-math-random
 function randomNum( toNum ){
@@ -22,6 +25,7 @@ function checkCollisions(){
 		if(collides(player, enemy)){
 			console.log("collision detected!");
 			enemy.remove();
+			score = 0;
 			player.x = 200;
 			player.y = 400;
 		}

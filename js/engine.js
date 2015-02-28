@@ -72,7 +72,7 @@ var Engine = (function(global) {
              * Basically, the longer the time that has elapsed, the quicker
              * the enemies will spawn. 
              */
-            counter = randomNum(100);
+            counter = randomNum(1000);
         }
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -100,6 +100,10 @@ var Engine = (function(global) {
         timer = new Timer();
         timer.reset();
         
+        // show score
+        ctx.font="20px Georgia";
+        ctx.fillText("Score: " + score + "", 0, 40);
+
         // spawn the player
         spawnPlayer();
         main();
@@ -117,6 +121,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
+        updateText();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -133,6 +138,11 @@ var Engine = (function(global) {
         player.update();
     }
 
+    function updateText(){
+        ctx.clearRect(0, 0, 606, 45);
+        // ctx.font="20px Georgia";
+        ctx.fillText("Score: " + score + "", 0, 40);
+    }
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
      * game tick (or loop of the game engine) because that's how games work -

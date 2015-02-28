@@ -78,6 +78,9 @@ Player.prototype.handleInput = function ( key ){
             // if so, reset player position
             this.x = 200;
             this.y = 400;
+
+            // update score
+            score += 50;
         }
         else {
             // if not, move player up
@@ -106,6 +109,7 @@ var lastEnemyStart = 0;
 // function that spawns an enemy
 function spawnEnemy(){
 
+    // we want the enemy to spawn at a new location
     var newStart = randomNum(4);
     
     while(newStart === lastEnemyStart){
