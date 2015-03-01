@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function( x, y, speed) {
+var Enemy = function( x, y, speed, sprite) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -10,7 +10,7 @@ var Enemy = function( x, y, speed) {
     this.height = 171;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = sprite;
 }
 
 // Update the enemy's position, required method for game
@@ -110,14 +110,26 @@ var lastEnemyStart = 0;
 // function that spawns an enemy
 function spawnEnemy(){
 
+    var min_speed = 20;
+    var max_speed = 100;
+    var enemy_sprite = 'images/enemy-bug.png';
+
     // we want the enemy to spawn at a new location
-    var newStart = randomNum(4);
+    var newStart = randomNum(0, 4);
     
     while(newStart === lastEnemyStart){
-        newStart = randomNum(4);
+        newStart = randomNum(0, 4);
     }
 
-    var enemy = new Enemy(0, enemyStartLocations[newStart], randomNum(100));
+    var randomInt = randomNum(0, 10);
+    
+    if(randomInt === 7 || randomInt === 5 || randomInt === 0){
+        min_speed = 150;
+        max_speed = 200;
+        enemy_sprite = 'images/enemy-car.png';
+    }
+
+    var enemy = new Enemy(0, enemyStartLocations[newStart], randomNum(min_speed, max_speed), enemy_sprite);
     
     lastEnemyStart = newStart;
 

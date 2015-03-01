@@ -56,7 +56,7 @@ var Engine = (function(global) {
         // decrement the counter
         counter--;
 
-        // console.log(counter);
+        console.log(counter);
         // console.log(timer.getElapsedTime());
         
         // once the counter reaches 0 or less, spawn a new enemy
@@ -69,7 +69,7 @@ var Engine = (function(global) {
              * Basically, the longer the time that has elapsed, the quicker
              * the enemies will spawn. 
              */
-            counter = randomNum(1000);
+            counter = randomNum(0, 1000);
         }
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.

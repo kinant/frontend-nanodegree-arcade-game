@@ -12,10 +12,10 @@ var enemyStartLocations = [base, base + add, base + add*2, base + add*3, base + 
 var score = 0;
 var timer;
 
-// returns a random number from 0 to toNum
+// returns a random number from min to max
 // http://stackoverflow.com/questions/12885110/javascript-math-random
-function randomNum( toNum ){
-    return Math.floor(Math.random() * (toNum + 1));
+function randomNum( min, max ){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function checkCollisions(){
