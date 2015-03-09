@@ -9,3 +9,9 @@ Resources used for this project:
 3. For select menu I used:
 - http://www.w3schools.com/tags/tag_select.asp
 - http://www.w3schools.com/jsref/dom_obj_select.asp
+
+4. For the random number function I used:
+- http://stackoverflow.com/questions/12885110/javascript-math-random
+
+5. For the collision detection function I used:
+- https://www.udacity.com/course/viewer#!/c-cs255/l-52265917/e-130215280/m-129941633

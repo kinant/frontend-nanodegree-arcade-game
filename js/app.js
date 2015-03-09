@@ -35,6 +35,7 @@ Enemy.prototype.render = function() {
 Enemy.prototype.remove = function ()
 {
     ctx.clearRect(this.x, this.y, this.width, this.height);
+    // use the remove function from sugar-1.4.1-custom.min.js
     allEnemies.remove(this);
 }
 
