@@ -1,0 +1,9 @@
+Resources used for this project:
+
+1. For the timer, I used "simpleGame.js"
+
+2. For enemy removal from array I used "sugar-1.4.1-custom.min.js"
+
+3. For select menu I used:
+http://www.w3schools.com/tags/tag_select.asp
+http://www.w3schools.com/jsref/dom_obj_select.asp

@@ -60,7 +60,6 @@ var Engine = (function(global) {
         if(counter == 0){
 
             spawnEnemy();
-            // console.log(allEnemies[0]);
 
             /* Reset the counter based on a function of the time elapsed.
              * Basically, the longer the time that has elapsed, the quicker
@@ -133,9 +132,12 @@ var Engine = (function(global) {
         player.update();
     }
 
+    /* This is called by the update function  and changes the time and score
+     * displayed on the screen.
+     */
     function updateText(){
+        // clear rect and re add the text on screen
         ctx.clearRect(0, 0, 606, 45);
-        // ctx.font="20px Georgia";
         ctx.fillText("Score: " + score + "", 0, 40);
         ctx.fillText("Time: " + Math.floor(timer.getElapsedTime()) + "", 400, 40);
     }
@@ -177,7 +179,6 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
 
         renderEntities();
     }

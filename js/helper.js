@@ -10,21 +10,29 @@ var enemyStartLocations = [BASE, BASE + ADD, BASE + ADD * 2, BASE + ADD * 3, BAS
 // variable for score
 var score = 0;
 
-// variable for the timer
+/* variable for the timer
+ * for the timer we use simpleGame.js
+ */
 var timer;
 
-// returns a random number from min to max
-// http://stackoverflow.com/questions/12885110/javascript-math-random
+/* Returns a random number from min to max
+ * code from:
+ * http://stackoverflow.com/questions/12885110/javascript-math-random
+ */
 function randomNum( min, max ){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Function that checks for any collisions
 function checkCollisions(){
 
+	// iterate over all the enemies
 	for(index in allEnemies)
 	{
+		// check if current (index) enemy, collides with player
 		var enemy = allEnemies[index];
 		if(collides(player, enemy)){
+			// if there is a collision, remove enemy and reset the game
 			enemy.remove();
 			score = 0;
 			timer.reset();
@@ -34,7 +42,10 @@ function checkCollisions(){
 	}
 }
 
-// from https://www.udacity.com/course/viewer#!/c-cs255/l-52265917/e-130215280/m-129941633
+/* Checks if player collides with an enemy
+ * code from Udacity Course:
+ * https://www.udacity.com/course/viewer#!/c-cs255/l-52265917/e-130215280/m-129941633
+ */
 function collides(player, enemy) {
 
 	var r1 = {
