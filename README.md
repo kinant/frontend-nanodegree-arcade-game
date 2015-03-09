@@ -1,6 +1,12 @@
-frontend-nanodegree-arcade-game
-===============================
+Front End Nanodegree: Arcade Game
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+Welcome to my Project 3 for Udacity Front End Nanodegree!
 
-for self-checking their submission.
+Please use the arrow keys to move the player around. Try to avoid
+enemy bugs and cars. Reach the top of the screen to increase the score.
+If you collide with a car or bug, the game will reset.
+
+Use the select menu at the bottom to change character sprite at any time.
+
+** NOTE: If you do make a selection for the sprite, click on the game screen
+again to continue playing!!
