@@ -55,16 +55,16 @@ var Engine = (function(global) {
 
         // decrement the counter
         counter--;
-        
+
         // once the counter reaches 0 or less, spawn a new enemy
         if(counter == 0){
-            
+
             spawnEnemy();
             // console.log(allEnemies[0]);
-            
+
             /* Reset the counter based on a function of the time elapsed.
              * Basically, the longer the time that has elapsed, the quicker
-             * the enemies will spawn. 
+             * the enemies will spawn.
              */
             counter = randomNum(0, 1000);
         }
@@ -86,14 +86,14 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
-        
+
         // initialize counter
         counter = 100;
 
         // initialize timer
         timer = new Timer();
         timer.reset();
-        
+
         // show score
         ctx.font="20px Georgia";
         ctx.fillText("Score: " + score + "", 0, 40);

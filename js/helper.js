@@ -1,12 +1,11 @@
 // array of possible enemy starting locations
 
-// bug height: 171 px
-
-var base = 60;
-var add = 82;
+// variable to store the base y position for enemies
+var BASE = 60;
+var ADD = 82;
 
 // array that holds all the possible enemy start position heights (or Y values)
-var enemyStartLocations = [base, base + add, base + add * 2, base + add * 3, base + add * 4];
+var enemyStartLocations = [BASE, BASE + ADD, BASE + ADD * 2, BASE + ADD * 3, BASE + ADD * 4];
 
 // variable for score
 var score = 0;
@@ -21,12 +20,11 @@ function randomNum( min, max ){
 }
 
 function checkCollisions(){
-	
+
 	for(index in allEnemies)
 	{
 		var enemy = allEnemies[index];
 		if(collides(player, enemy)){
-			console.log("collision detected!");
 			enemy.remove();
 			score = 0;
 			timer.reset();
@@ -38,14 +36,14 @@ function checkCollisions(){
 
 // from https://www.udacity.com/course/viewer#!/c-cs255/l-52265917/e-130215280/m-129941633
 function collides(player, enemy) {
-	
+
 	var r1 = {
 		"top": player.y + 65,
 		"bottom": player.y + player.height - 30,
 		"right": player.x + player.width - 30,
 		"left": player.x + 36
 	};
-	
+
 	var r2 = {
 		"top": enemy.y + 85,
 		"bottom": enemy.y + enemy.height - 30,
