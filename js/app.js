@@ -21,7 +21,6 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     if(this.x > 400){
-        console.log("removing!!");
         this.remove();
     }
 
@@ -46,13 +45,19 @@ var Player = function(x, y, sprite) {
     this.x = x;
     this.y = y;
     this.sprite = "images/char-boy.png";
-    console.log("sprite..." + this.sprite);
     this.width = 101;
     this.height = 171;
 }
 
-Player.prototype.update = function( dt )
+Player.prototype.update = function( )
 {
+    // nothing
+}
+
+Player.prototype.changeSprite = function()
+{
+    // change sprite based on the value of the selected select menu option
+    this.sprite = document.getElementById("charSprite").value;
 }
 
 Player.prototype.render = function()
@@ -61,7 +66,7 @@ Player.prototype.render = function()
 }
 
 Player.prototype.handleInput = function ( key ){
-    
+
     // if right was pressed + check bound
     if(key === "right" && this.x < 400){
        this.x += 100;
@@ -72,10 +77,10 @@ Player.prototype.handleInput = function ( key ){
     }
     // if up was pressed + check bound
     else if(key === "up" && this.y > 0){
-        
+
         // check if attempting to move to top of screen
         if(this.y === 60){
-            
+
             // if so, reset player position
             this.x = 200;
             this.y = 400;
@@ -94,8 +99,6 @@ Player.prototype.handleInput = function ( key ){
     }
 }
 
-// canvas is 505 x 606
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -106,33 +109,48 @@ function spawnPlayer( sprite ){
     player = new Player( 200, 400, sprite);
 }
 
+// variable to store where last enemy spawned. This way enemies will spawn at a different y value each time.
 var lastEnemyStart = 0;
+
 // function that spawns an enemy
 function spawnEnemy(){
 
+    // variables for min and max speed
     var min_speed = 20;
     var max_speed = 100;
+
+    // set the default sprite
     var enemy_sprite = 'images/enemy-bug.png';
 
     // we want the enemy to spawn at a new location
     var newStart = randomNum(0, 4);
-    
+
+    // so continue to set the newStart until it does not equal the last spawn location
     while(newStart === lastEnemyStart){
         newStart = randomNum(0, 4);
     }
 
+    // use a random int to determine when a car will spawn
     var randomInt = randomNum(0, 10);
-    
+
+    // spawn a car enemy when the random int is 5, 7 or 0
     if(randomInt === 7 || randomInt === 5 || randomInt === 0){
+
+        // make the min and max speeds higher
         min_speed = 150;
         max_speed = 200;
+
+        // change to car sprite
         enemy_sprite = 'images/enemy-car.png';
     }
 
+    // create the enemy
     var enemy = new Enemy(0, enemyStartLocations[newStart], randomNum(min_speed, max_speed), enemy_sprite);
-    
+
+    // set the value of the last spawn location
     lastEnemyStart = newStart;
 
+    // push the enemy into the array
     allEnemies.push(enemy);
 
 };
