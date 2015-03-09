@@ -55,9 +55,6 @@ var Engine = (function(global) {
 
         // decrement the counter
         counter--;
-
-        console.log(counter);
-        // console.log(timer.getElapsedTime());
         
         // once the counter reaches 0 or less, spawn a new enemy
         if(counter == 0){

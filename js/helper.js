@@ -6,10 +6,12 @@ var base = 60;
 var add = 82;
 
 // array that holds all the possible enemy start position heights (or Y values)
-var enemyStartLocations = [base, base + add, base + add*2, base + add*3, base + add*4];
+var enemyStartLocations = [base, base + add, base + add * 2, base + add * 3, base + add * 4];
 
 // variable for score
 var score = 0;
+
+// variable for the timer
 var timer;
 
 // returns a random number from min to max
@@ -55,12 +57,4 @@ function collides(player, enemy) {
 			 r2.right < r1.left ||
 			 r2.top > r1.bottom ||
 			 r2.bottom < r1.top)
-}
-
-//
-function selectScreen() {
-	ctx.fillRect(0,0,505,606);
-
-	setTimeout(function(){ console.log(Engine); }, 3000);
-
 }
