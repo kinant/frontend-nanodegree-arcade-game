@@ -1,3 +1,4 @@
+"use strict";
 // variable to store the base y position for enemies and the addition to
 // change the y value. Enemy start positions can be changed by just
 // changing these two variables

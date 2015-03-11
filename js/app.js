@@ -120,8 +120,8 @@ var lastEnemyStart = 0;
 function spawnEnemy(){
 
     // variables for min and max speed
-    var min_speed = 20;
-    var max_speed = 100;
+    var min_speed = 20,
+    	max_speed = 100;
 
     // set the default sprite
     var enemy_sprite = 'images/enemy-bug.png';
