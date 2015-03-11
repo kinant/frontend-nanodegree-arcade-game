@@ -11,7 +11,7 @@ var Enemy = function( x, y, speed, sprite) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = sprite;
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -26,12 +26,12 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 505){
         this.remove();
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Enemy.prototype.remove = function ()
 {
@@ -40,7 +40,7 @@ Enemy.prototype.remove = function ()
 
     // use the remove function from sugar-1.4.1-custom.min.js
     allEnemies.remove(this);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -51,23 +51,23 @@ var Player = function(x, y, sprite) {
     this.sprite = "images/char-boy.png";
     this.width = 101;
     this.height = 171;
-}
+};
 
 Player.prototype.update = function( )
 {
     // nothing
-}
+};
 
 Player.prototype.changeSprite = function()
 {
     // change sprite based on the value of the selected select menu option
     this.sprite = document.getElementById("charSprite").value;
-}
+};
 
 Player.prototype.render = function()
 {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function ( key ){
 
@@ -101,7 +101,7 @@ Player.prototype.handleInput = function ( key ){
     else if(key === "down" && this.y < 400){
         this.y += 85;
     }
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -157,7 +157,7 @@ function spawnEnemy(){
     // push the enemy into the array
     allEnemies.push(enemy);
 
-};
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

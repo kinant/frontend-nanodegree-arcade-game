@@ -27,17 +27,21 @@ function randomNum( min, max ){
 function checkCollisions(){
 
 	// iterate over all the enemies
-	for(index in allEnemies)
+	for(var index in allEnemies)
 	{
-		// check if current (index) enemy, collides with player
-		var enemy = allEnemies[index];
-		if(collides(player, enemy)){
-			// if there is a collision, remove enemy and reset the game
-			score = 0;
-			timer.reset();
-			removeAllEnemies()
-			player.x = 200;
-			player.y = 400;
+		// check to filter unwanted properties from the prototype
+		if(allEnemies.hasOwnProperty(index)){
+
+			// check if current (index) enemy, collides with player
+			var enemy = allEnemies[index];
+			if(collides(player, enemy)){
+				// if there is a collision, remove enemy and reset the game
+				score = 0;
+				timer.reset();
+				removeAllEnemies();
+				player.x = 200;
+				player.y = 400;
+			}
 		}
 	}
 }
@@ -65,7 +69,7 @@ function collides(player, enemy) {
 	return !(r2.left > r1.right ||
 			 r2.right < r1.left ||
 			 r2.top > r1.bottom ||
-			 r2.bottom < r1.top)
+			 r2.bottom < r1.top);
 }
 
 /* Function that removes all enemies from the screen
