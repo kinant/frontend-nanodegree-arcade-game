@@ -20,11 +20,12 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    if(this.x > 400){
+    this.x = this.x + this.speed * dt;
+
+    // if the enemy runs off the screen, remove
+    if(this.x > 505){
         this.remove();
     }
-
-    this.x = this.x + this.speed * dt;
 }
 
 // Draw the enemy on the screen, required method for game
@@ -34,7 +35,9 @@ Enemy.prototype.render = function() {
 
 Enemy.prototype.remove = function ()
 {
+    // clear the canvas rectangle represented by the enemy
     ctx.clearRect(this.x, this.y, this.width, this.height);
+
     // use the remove function from sugar-1.4.1-custom.min.js
     allEnemies.remove(this);
 }

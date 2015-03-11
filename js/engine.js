@@ -53,19 +53,32 @@ var Engine = (function(global) {
         update(dt);
         render();
 
+        // console.log("# enemies: " + allEnemies.length);
+
         // decrement the counter
         counter--;
 
         // once the counter reaches 0 or less, spawn a new enemy
-        if(counter == 0){
+        if(counter < 0){
 
             spawnEnemy();
 
             /* Reset the counter based on a function of the time elapsed.
              * Basically, the longer the time that has elapsed, the quicker
-             * the enemies will spawn.
+             * the enemies will spawn. maxWait is the maxWait number for
+             * next spawn
              */
-            counter = randomNum(0, 1000);
+            var maxWait = 400 - (10 * timer.getElapsedTime());
+
+            // eventually the maximum waiting period will be negative due to
+            // high enough time so we set it to a positive low value.
+            if(maxWait < 0){
+                maxWait = 50;
+            }
+
+            // reset the counter
+            counter = randomNum(0, maxWait);
+
         }
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.

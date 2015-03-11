@@ -10,3 +10,6 @@ Use the select menu at the bottom to change character sprite at any time.
 
 ** NOTE: If you do make a selection for the sprite, click on the game screen
 again to continue playing!!
+
+** NOTE #2: helper.js is a file I created for other functions and variables
+that are used in the program.

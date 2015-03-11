@@ -33,9 +33,9 @@ function checkCollisions(){
 		var enemy = allEnemies[index];
 		if(collides(player, enemy)){
 			// if there is a collision, remove enemy and reset the game
-			enemy.remove();
 			score = 0;
 			timer.reset();
+			removeAllEnemies()
 			player.x = 200;
 			player.y = 400;
 		}
@@ -66,4 +66,13 @@ function collides(player, enemy) {
 			 r2.right < r1.left ||
 			 r2.top > r1.bottom ||
 			 r2.bottom < r1.top)
+}
+
+/* Function that removes all enemies from the screen
+ */
+function removeAllEnemies(){
+
+	while(allEnemies.length > 0){
+		allEnemies[0].remove();
+	}
 }
